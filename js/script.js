@@ -138,15 +138,15 @@ window.addEventListener("popstate", (e) => {
     }
 });
 
-const switchPage = (page) => {
+const switchPage = (page, isDefault=false) => {
   switch (page) {
     case "menu":
-      history.pushState({ page: page }, "Equator - Electronic Music Artist - EDM & Bass - Sydney, Australia", location.pathname);
+      history.pushState({ page: page }, "Equator - Electronic/Bass Music Artist - Sydney, Australia", location.pathname);
       showMenu();
       break;
     
     case "shows":
-      showShows();
+      showShows(isDefault);
       history.pushState({ page: page }, "Equator Shows - Trap, Dubstep, Bass Events - Sydney DJ, AU", "#shows");
       
       break;
@@ -156,15 +156,16 @@ const switchPage = (page) => {
   }
 }
 
-  const showShows = () => {
+  const showShows = (isDefault=false) => {
     const showsMenuItem = document.getElementById("shows-menu-item");
     const menu = document.getElementById("menu");
+    const showsHeader = document.getElementById("shows-header");
     const socials = document.getElementsByClassName("socials-outer")[0];
     const showsWrapper = document.getElementById("shows-wrapper");
     const loading = document.getElementById("loading");
 
     const showsTitle = "Equator Shows - Trap, Dubstep, Bass Events - Sydney DJ, AU";
-    const showsDescription = "See upcoming concerts for Australian electronic music artist Equator. EDM & bass gigs - producer based in Sydney. Melodic dubstep, trap, future bass events.";
+    const showsDescription = "Equator shows - See upcoming concerts for Australian EDM & bass music artist Equator. Producer based in Sydney. Melodic dubstep, trap, future bass events.";
     const showsURL = "https://equator.com.au/shows";
 
     document.title = showsTitle;
@@ -180,13 +181,17 @@ const switchPage = (page) => {
     menu.style.opacity = "0";
     socials.style.opacity = "0";
     loading.style.opacity = "0";
+
+    if (isDefault) {
+      showsHeader.hidden = true;
+    }
     
     setTimeout(()=>{
       menu.style.display = "none"; 
       socials.style.display = "none";
       showsWrapper.style.display = "flex";
       setTimeout(()=>{showsWrapper.style.opacity = "1";},0);
-      
+      showsHeader.hidden = false;
     },500);
   }
 
@@ -195,6 +200,7 @@ const switchPage = (page) => {
     const showsWrapper = document.getElementById("shows-wrapper");
     const socials = document.getElementsByClassName("socials-outer")[0];
     const loading = document.getElementById("loading");
+    const showsHeader = document.getElementById("shows-header");
 
     const menuTitle = "Equator - Electronic Music Artist - EDM & Bass - Sydney, Australia";
     const menuDescription = "Australian electronic music artist. EDM & bass music producer and DJ based in Sydney. Melodic dubstep, trap, future bass, remixes. Listen now. aka jjonah";
@@ -218,7 +224,7 @@ const switchPage = (page) => {
       menu.style.display = "flex";
       setTimeout(()=>{menu.style.opacity = "1";},0);
       setTimeout(()=>{socials.style.opacity = "1";},0);
-      
+      showsHeader.hidden = true;
     },500);
   }
   
@@ -484,7 +490,7 @@ const switchPage = (page) => {
 
     document.getElementById('shows-menu-item').onclick = function(e){
       e.preventDefault();
-      switchPage('shows');
+      switchPage('shows', true);
     }
     
     let backLinks = [...document.getElementsByClassName('back-text')].concat([...document.getElementsByClassName('logo-link')]);
@@ -493,7 +499,7 @@ const switchPage = (page) => {
       let el = backLinks[i];
       el.onclick = function(e){
         e.preventDefault();
-        switchPage('menu');
+        switchPage('menu', true);
       }
     }
   }

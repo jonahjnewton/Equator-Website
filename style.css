@@ -10,6 +10,10 @@ body{
     width: 100%;
 }
 
+h1{
+    margin-bottom:0;
+}
+
 #blob{
     width:20rem;
     background:linear-gradient(to right, #57b67e, #69a5e4);
@@ -208,13 +212,21 @@ a{
 
 .logo{
     width:clamp(9rem,38vw,10rem);
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .letter{
     display: inline-block;
     /* animation: skew-right 3s; */
     /* transform: skew(calc(var(--skew-random)*-1)) translateX(var(--translate-random)); */
+}
+
+#shows-header{
+    color:white;
+    width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1rem;
 }
 
 @keyframes skew-left {
