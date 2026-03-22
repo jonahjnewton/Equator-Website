@@ -221,14 +221,6 @@ a{
     /* transform: skew(calc(var(--skew-random)*-1)) translateX(var(--translate-random)); */
 }
 
-#shows-header{
-    color:white;
-    width:fit-content;
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom:1rem;
-}
-
 @keyframes skew-left {
     0%,100% {
         animation-timing-function: ease;
