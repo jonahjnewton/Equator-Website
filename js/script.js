@@ -142,7 +142,7 @@ const switchPage = (page, isDefault=false) => {
   switch (page) {
     case "menu":
       history.pushState({ page: page }, "Equator - Electronic/Bass Music Artist - Sydney, Australia", location.pathname);
-      showMenu();
+      showMenu(isDefault);
       break;
     
     case "shows":
@@ -163,6 +163,8 @@ const switchPage = (page, isDefault=false) => {
     const socials = document.getElementsByClassName("socials-outer")[0];
     const showsWrapper = document.getElementById("shows-wrapper");
     const loading = document.getElementById("loading");
+
+    const menuHeader = document.getElementById("menu-header");
 
     const showsTitle = "Equator Shows - Trap, Dubstep, Bass Events - Sydney DJ, AU";
     const showsDescription = "Equator shows - See upcoming concerts for Australian EDM & bass music artist Equator. Producer based in Sydney. Melodic dubstep, trap, future bass events.";
@@ -192,15 +194,17 @@ const switchPage = (page, isDefault=false) => {
       showsWrapper.style.display = "flex";
       setTimeout(()=>{showsWrapper.style.opacity = "1";},0);
       showsHeader.hidden = false;
+      menuHeader.hidden = true;
     },500);
   }
 
-  const showMenu = () => {
+  const showMenu = (isDefault=false) => {
     const menu = document.getElementById("menu");
     const showsWrapper = document.getElementById("shows-wrapper");
     const socials = document.getElementsByClassName("socials-outer")[0];
     const loading = document.getElementById("loading");
     const showsHeader = document.getElementById("shows-header");
+    const menuHeader = document.getElementById("menu-header");
 
     const menuTitle = "Equator - Electronic Music Artist - EDM & Bass - Sydney, Australia";
     const menuDescription = "Australian electronic music artist. EDM & bass music producer and DJ based in Sydney. Melodic dubstep, trap, future bass, remixes. Listen now. aka jjonah";
@@ -218,6 +222,11 @@ const switchPage = (page, isDefault=false) => {
 
     showsWrapper.style.opacity = "0";
     loading.style.opacity = "0";
+
+    if (isDefault) {
+      menuHeader.hidden = true;
+    }
+
     setTimeout(()=>{
       showsWrapper.style.display = "none"; 
       socials.style.display = "flex";
@@ -225,6 +234,7 @@ const switchPage = (page, isDefault=false) => {
       setTimeout(()=>{menu.style.opacity = "1";},0);
       setTimeout(()=>{socials.style.opacity = "1";},0);
       showsHeader.hidden = true;
+      menuHeader.hidden = false;
     },500);
   }
   
